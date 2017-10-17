@@ -194,7 +194,6 @@ int16_t Thanos_MAX17055::getTTF_raw() {
 float Thanos_MAX17055::getCurrent_mA() {
   int16_t valueDec = getCurrent_raw();
   return valueDec * 0.15625;
-  //return (32766 - valueDec) * 0.15625;
 }
 
 /**************************************************************************/
@@ -205,7 +204,6 @@ float Thanos_MAX17055::getCurrent_mA() {
 float Thanos_MAX17055::getAvgCurrent_mA() {
   int16_t valueDec = getAvgCurrent_raw();
   return valueDec * 0.15625;
-  //return (32766 - valueDec) * 0.15625;
 }
 
 /**************************************************************************/
