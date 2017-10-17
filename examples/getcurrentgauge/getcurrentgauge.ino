@@ -7,9 +7,6 @@
 
 Thanos_MAX17055 MAX17055;
 
-uint16_t  reading = 0;
-
-
 // MAX17055 valiables
 float cellVoltage = 0;
 float current_mA = 0;
@@ -21,11 +18,7 @@ float DieTemp = 0;
 float cellTTE = 0;
 float cellTTF = 0;
 
-
-
 void setup() {
-
-
   byte error, address;
   int nDevices;
 
@@ -46,8 +39,6 @@ void setup() {
     // a device did acknowledge to the address.
     Wire.beginTransmission(address);
     error = Wire.endTransmission();
-
-
     if (error == 0)
     {
       if (address < 112) {
@@ -62,7 +53,6 @@ void setup() {
     }
     else if (error == 4)
     {
-
       if (address < 112) {
         SerialUSB.print("Unknow error at address 0x");
         SerialUSB.println(address, HEX);
@@ -84,15 +74,9 @@ void setup() {
   MAX17055.begin();
   SerialUSB.println(" MAX17055 started\r");
   SerialUSB.println("Measuring voltage and current with MAX17055 ...");
-
-
-
 }
 
 void loop() {
-
-
-
   cellVoltage = MAX17055.getVoltageCell();
   current_mA = MAX17055.getCurrent_mA();
   Avg_current_mA = MAX17055.getAvgCurrent_mA();
@@ -102,7 +86,6 @@ void loop() {
   DieTemp = MAX17055.getTemp();
   cellTTE = MAX17055.getTTE();
   cellTTF = MAX17055.getTTF();
-
   uint16_t cellVoltagefix = cellVoltage;
   
   SerialUSB.print("(");
@@ -127,6 +110,4 @@ void loop() {
   SerialUSB.print("hrs] - [Full ");
   SerialUSB.print(cellTTF); // print the reading
   SerialUSB.println("hrs]  ");
-
-
 }
